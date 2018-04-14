@@ -15,4 +15,8 @@ export class AppComponent {
   toProductDetails() {
     this.router.navigate(['/product', 3]);
   }
+
+  toProductDetailsMultParams(catlogue: string, levelP: number) {
+    return this.router.navigate(['/product', {'catlogue': 'Electronic', 'levelP': 3}]);
+  }
 }

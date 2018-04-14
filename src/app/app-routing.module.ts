@@ -15,6 +15,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'chat', component: ChatComponent, outlet: 'aux'},
   {path: 'product', component: ProductComponent},
+  {path: 'product', component: ProductComponent, data: [{catalogue: 'electronic', levelP: 66}]},
   {
     path: 'product/:id', component: ProductComponent, children: [
       {path: '', component: ProductDescComponent},

@@ -9,20 +9,23 @@ import {ActivatedRoute, Params} from '@angular/router';
 export class ProductComponent implements OnInit {
   protected productId: number;
   protected productName: string;
+  protected productCatlogue: string;
+  protected productLevel: number;
 
   constructor(private routeInfo: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.routeInfo.params.subscribe((params: Params) => this.productId = params['id']);
-    this.routeInfo.data.subscribe((data: { product: Product }) => {
-      this.productId = data.product.id;
-      this.productName = data.product.name;
-    });
     if (this.routeInfo.snapshot.queryParams['id'] == null) {
-      this.productId = this.routeInfo.snapshot.params['id'];
+      this.routeInfo.params.subscribe((params: Params) => this.productId = params['id']);
+      this.routeInfo.data.subscribe((data: { product: Product }) => {
+        this.productId = data.product.id;
+        this.productName = data.product.name;
+      });
     } else {
-      this.productId = this.routeInfo.snapshot.queryParams['id'];
+      this.routeInfo.queryParams.subscribe((params: Params) => this.productId = params['id']);
+      this.productCatlogue = this.routeInfo.snapshot.queryParams['catlogue'];
+      this.productLevel = this.routeInfo.snapshot.queryParams['levelP'];
     }
   }
 
